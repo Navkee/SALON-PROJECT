@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StyleHub All-in-One</title>
+    <style>
+        /* This hides the modules we aren't using */
+        .module { display: none; padding: 20px; font-family: sans-serif; border: 2px solid #333; margin-top: 20px; }
+        /* This shows the active module */
+        .active { display: block; }
+        button { padding: 10px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body style="text-align: center;">
+
+    <h1>StyleHub Salon Management</h1>
+    <hr>
+
+    <!-- MODULE 1: LOGIN -->
+    <div id="login" class="module active">
+        <h2>1. Login Module</h2>
+        <input type="text" placeholder="Username"><br><br>
+        <input type="password" placeholder="Password"><br><br>
+        <button onclick="showModule('selection')">Login</button>
+    </div>
+
+    <!-- MODULE 2: SERVICE SELECTION -->
+    <div id="selection" class="module">
+        <h2>2. Service Selection</h2>
+        <p>Choose a service:</p>
+        <button onclick="showModule('confirm')">Haircut ($20)</button>
+        <button onclick="showModule('confirm')">Spa ($50)</button>
+        <br><br>
+        <button onclick="showModule('login')">Logout</button>
+    </div>
+
+    <!-- MODULE 3: BOOKING CONFIRMATION -->
+    <div id="confirm" class="module">
+        <h2 style="color: green;">3. Booking Confirmed</h2>
+        <p>Slot Assigned: <b>10:00 AM Today</b></p>
+        <button onclick="showModule('staff')">Go to Staff Portal</button>
+        <button onclick="showModule('selection')">Back</button>
+    </div>
+
+    <!-- MODULE 4: STAFF UPDATES -->
+    <div id="staff" class="module">
+        <h2>4. Staff Execution Updates</h2>
+        <p>Current Service: <b>Haircut</b></p>
+        <p>Status: <span id="statusText" style="color: blue;">In Progress</span></p>
+        <button onclick="document.getElementById('statusText').innerText='Completed'">Finish Service</button>
+        <br><br>
+        <button onclick="showModule('reports')">View Management Report</button>
+    </div>
+
+    <!-- MODULE 5: REPORTS -->
+    <div id="reports" class="module">
+        <h2>5. Report Generation</h2>
+        <div style="background: #eee; padding: 10px;">
+            <p>Total Revenue: <b>$70.00</b></p>
+            <p>Customer Satisfaction: <b>100%</b></p>
+        </div>
+        <br>
+        <button onclick="window.print()">Print This Report</button>
+        <button onclick="showModule('login')">Restart Demo</button>
+    </div>
+
+    <script>
+        // Simple function to switch between modules
+        function showModule(moduleId) {
+            // 1. Hide all modules
+            var modules = document.getElementsByClassName('module');
+            for (var i = 0; i < modules.length; i++) {
+                modules[i].classList.remove('active');
+            }
+            // 2. Show only the one we clicked
+            document.getElementById(moduleId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
