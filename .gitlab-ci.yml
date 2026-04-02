@@ -1,0 +1,23 @@
+stages:
+  - build
+  - test
+
+create_file:
+  image: alpine
+  stage: build
+  script:
+    - echo "Building ... ATM PROJECT"
+    - mkdir build
+    - touch build/somefile.txt
+  artifacts:
+    paths:
+      - build/
+
+
+test_file:
+  image: alpine
+  stage: test
+  script:
+      - echo "Testing ATM PROJECT"
+      - test -f build/somefile.txt
+      - echo "All tests passed"
